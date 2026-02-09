@@ -1,0 +1,41 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: gametracker_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: gametracker_db
+      MYSQL_USER: user_tracker
+      MYSQL_PASSWORD: password_tracker
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  app:
+    build: .
+    container_name: gametracker_app
+    volumes:
+      - ./data:/app/data
+      - ./output:/app/output
+      - ./src:/app/src
+      - ./scripts:/app/scripts
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: gametracker_db
+      DB_USER: user_tracker
+      DB_PASSWORD: password_tracker
+    depends_on:
+      db:
+        condition: service_healthy
+    stdin_open: true
+    tty: true
+
+volumes:
+  mysql_data:
