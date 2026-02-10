@@ -15,4 +15,4 @@ COPY . .
 RUN chmod +x scripts/*.sh || true
 
 # CETTE LIGNE EST LA CLÉ : elle garde le conteneur en vie
-CMD ["tail", "-f", "/dev/null"]
+CMD ["bash", "scripts/run_pipeline.sh"]
