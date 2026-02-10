@@ -4,11 +4,14 @@ CREATE TABLE IF NOT EXISTS players (
 
     username VARCHAR(50) NOT NULL,
 
-    email VARCHAR(100) NOT NULL,
+    email VARCHAR(100),
 
-    join_date DATE,
+    registration_date DATE,
 
-    country VARCHAR(50)
+    country VARCHAR(50),
+
+
+    level INT 
 
 );
 
@@ -20,11 +23,15 @@ CREATE TABLE IF NOT EXISTS scores (
 
     player_id INT,
 
-    game_name VARCHAR(100),
+    game VARCHAR(100),
 
-    score_value INT,
+    score INT,
 
-    session_date DATETIME,
+    duration_minutes INT,
+
+    played_at DATETIME,
+
+    platform VARCHAR(50),
 
     FOREIGN KEY (player_id) REFERENCES players(player_id)
 

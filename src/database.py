@@ -21,9 +21,8 @@ def get_connection_with_retry(max_retries=5, delay=2):
     for attempt in range(max_retries):
         try:
             conn = get_connection()
-            if conn.is_connected():
-                print(f"Connexion établie à {Config.DB_HOST}")
-                return conn
+            print(f"Connexion établie à {Config.DB_HOST}")
+            return conn
         except Error as e:
             print(f"Tentative {attempt + 1}/{max_retries} : {e}")
             if attempt < max_retries - 1:
@@ -34,13 +33,11 @@ def get_connection_with_retry(max_retries=5, delay=2):
 def database_connection():
     """Context manager pour gérer commit, rollback et fermeture de la connexion."""
     conn = get_connection_with_retry()
-    cursor = conn.cursor(dictionary=True)
     try:
-        yield cursor
+        yield conn
         conn.commit()
     except Exception:
         conn.rollback()
         raise
     finally:
-        cursor.close()
         conn.close()
