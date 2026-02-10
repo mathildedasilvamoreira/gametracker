@@ -23,3 +23,4 @@ def extract(filepath: str) -> pd.DataFrame:
     df = pd.read_csv(filepath)
     print(f"Extrait {len(df)} lignes de {path.name}")
     return df
+

@@ -81,3 +81,5 @@ def load_scores(df: pd.DataFrame, conn) -> int:
 
     print(f"Chargé {count} scores")
     return count
+
+

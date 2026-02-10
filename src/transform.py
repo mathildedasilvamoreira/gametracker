@@ -51,3 +51,5 @@ def transform_scores(df: pd.DataFrame, valid_player_ids: list) -> pd.DataFrame:
     df = df.drop_duplicates(subset=['player_id','game','played_at'])
 
     return df
+
+
