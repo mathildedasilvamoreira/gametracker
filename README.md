@@ -48,3 +48,4 @@ Ce projet implémente un pipeline complet d'Extraction, Transformation et Charge
 5. Scores négatifs : certains scores sont négatifs (aberrants)
 6. Valeurs manquantes : certains champs email ou score sont vides
 7. Références orphelines : certains scores réfèrent à un player_id qui n’existe pas dansPlayers.csv
+
