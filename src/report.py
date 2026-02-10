@@ -78,7 +78,7 @@ def generate_report():
         print("✅ Rapport généré avec succès dans output/rapport.txt[cite: 221].")
 
     except Exception as e:
-        print(f"❌ Erreur lors de la génération du rapport : {e}")
+        print(f"Erreur lors de la génération du rapport : {e}")
         raise # Permet au script Bash de s'arrêter en cas d'erreur [cite: 202]
 
 if __name__ == "__main__":
